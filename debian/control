@@ -1,0 +1,12 @@
+Source: ros-humble-ros2-ouster
+Section: misc
+Priority: optional
+Maintainer: Steve Macenski <stevenmacenski@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libpcl-apps1.13, libpcl-common1.13, libpcl-features1.13, libpcl-filters1.13, libpcl-io1.13, libpcl-kdtree1.13, libpcl-keypoints1.13, libpcl-ml1.13, libpcl-octree1.13, libpcl-outofcore1.13, libpcl-people1.13, libpcl-recognition1.13, libpcl-registration1.13, libpcl-sample-consensus1.13, libpcl-search1.13, libpcl-segmentation1.13, libpcl-stereo1.13, libpcl-surface1.13, libpcl-tracking1.13, libpcl-visualization1.13, libtins-dev, ros-humble-ament-cmake, ros-humble-ament-lint-auto <!nocheck>, ros-humble-ament-lint-common <!nocheck>, ros-humble-builtin-interfaces, ros-humble-geometry-msgs, ros-humble-launch, ros-humble-launch-ros, ros-humble-ouster-msgs, ros-humble-pcl-conversions, ros-humble-rclcpp, ros-humble-rclcpp-components, ros-humble-rclcpp-lifecycle, ros-humble-sensor-msgs, ros-humble-std-srvs, ros-humble-tf2-geometry-msgs, ros-humble-tf2-ros, ros-humble-visualization-msgs, ros-humble-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-ros2-ouster
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpcl-apps1.13, libpcl-common1.13, libpcl-features1.13, libpcl-filters1.13, libpcl-io1.13, libpcl-kdtree1.13, libpcl-keypoints1.13, libpcl-ml1.13, libpcl-octree1.13, libpcl-outofcore1.13, libpcl-people1.13, libpcl-recognition1.13, libpcl-registration1.13, libpcl-sample-consensus1.13, libpcl-search1.13, libpcl-segmentation1.13, libpcl-stereo1.13, libpcl-surface1.13, libpcl-tracking1.13, libpcl-visualization1.13, libtins-dev, ros-humble-builtin-interfaces, ros-humble-geometry-msgs, ros-humble-launch, ros-humble-launch-ros, ros-humble-ouster-msgs, ros-humble-pcl-conversions, ros-humble-rclcpp, ros-humble-rclcpp-components, ros-humble-rclcpp-lifecycle, ros-humble-sensor-msgs, ros-humble-std-srvs, ros-humble-tf2-geometry-msgs, ros-humble-tf2-ros, ros-humble-visualization-msgs, ros-humble-ros-workspace
+Description: ROS2 Drivers for the Ouster OS-1 Lidar
