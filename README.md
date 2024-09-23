@@ -1,3 +1,28 @@
+## ros2_ouster_drivers (humble) - 0.4.3-1
+
+The packages in the `ros2_ouster_drivers` repository were released into the `humble` distro by running `/home/z572/gits/revyos-ros/venv/bin/bloom-release -r humble ros2_ouster_drivers --override-release-repository-push-url git@github.com:revyos-ros/ros2_ouster_drivers-release.git` on `Mon, 23 Sep 2024 15:52:25 -0000`
+
+These packages were released:
+- `ouster_msgs`
+- `ros2_ouster`
+
+Version of package(s) in repository `ros2_ouster_drivers`:
+
+- upstream repository: https://github.com/SteveMacenski/ros2_ouster_drivers.git
+- release repository: https://github.com/revyos-ros/ros2_ouster_drivers-release.git
+- rosdistro version: `0.4.3-1`
+- old version: `0.4.2-1`
+- new version: `0.4.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## ros2_ouster_drivers (jazzy) - 0.5.1-6
 
 The packages in the `ros2_ouster_drivers` repository were released into the `jazzy` distro by running `/home/z572/gits/revyos-ros/venv/bin/bloom-release -r jazzy ros2_ouster_drivers --override-release-repository-push-url git@github.com:revyos-ros/ros2_ouster_drivers-release` on `Mon, 24 Jun 2024 05:13:49 -0000`
