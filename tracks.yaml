@@ -1,4 +1,4 @@
-release_repo_url: git@github.com:revyos-ros/ros2_ouster_drivers-release
+release_repo_url: git@github.com:revyos-ros/ros2_ouster_drivers-release.git
 tracks:
   dashing:
     actions:
