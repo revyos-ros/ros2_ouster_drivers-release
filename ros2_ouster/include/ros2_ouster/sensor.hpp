@@ -68,18 +68,16 @@ public:
   /**
    * @brief reading a lidar packet
    * @param state of the sensor
-   * @param buf pointer to a buffer to hold the packet data. Must hold getPacketFormat().lidar_packet_size bytes.
-   * @return true if a packet was recieved, false otherwise
+   * @return the packet of data
    */
-  bool readLidarPacket(const ouster::sensor::client_state & state, uint8_t * buf) override;
+  uint8_t * readLidarPacket(const ouster::sensor::client_state & state) override;
 
   /**
    * @brief reading an imu packet
    * @param state of the sensor
-   * @param buf pointer to a buffer to hold the packet data. Must hold getPacketFormat().imu_packet_size bytes.
-   * @return true if a packet was recieved, false otherwise
+   * @return the packet of data
    */
-  bool readImuPacket(const ouster::sensor::client_state & state, uint8_t * buf) override;
+  uint8_t * readImuPacket(const ouster::sensor::client_state & state) override;
 
   /**
    * @brief Sets the metadata class variable
@@ -98,6 +96,8 @@ public:
 
 private:
   std::shared_ptr<ouster::sensor::client> _ouster_client;
+  std::vector<uint8_t> _lidar_packet;
+  std::vector<uint8_t> _imu_packet;
   ros2_ouster::Metadata _metadata{};
 };
 

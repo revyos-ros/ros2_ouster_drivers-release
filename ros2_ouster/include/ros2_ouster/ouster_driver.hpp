@@ -36,8 +36,6 @@
 #include "ros2_ouster/interfaces/data_processor_interface.hpp"
 #include "ros2_ouster/full_rotation_accumulator.hpp"
 
-#include "ros2_ouster/ringbuffer.hpp"
-
 namespace ros2_ouster
 {
 
@@ -106,9 +104,9 @@ public:
 
 private:
   /**
-  * @brief Thread function to process data from the UDP socket
+  * @brief Timer callback to process the UDP socket
   */
-  void receiveData();
+  void processData();
 
   /**
    * @brief Create TF2 frames for the lidar sensor
@@ -137,17 +135,13 @@ private:
     const std::shared_ptr<ouster_msgs::srv::GetMetadata::Request> request,
     std::shared_ptr<ouster_msgs::srv::GetMetadata::Response> response);
 
-  /**
-  * @brief Thread function to process buffered packets that have been received from the sensor
-  */
-  void processData();
-
   rclcpp::Service<std_srvs::srv::Empty>::SharedPtr _reset_srv;
   rclcpp::Service<ouster_msgs::srv::GetMetadata>::SharedPtr _metadata_srv;
 
   std::unique_ptr<SensorInterface> _sensor;
   std::multimap<ouster::sensor::client_state,
     std::unique_ptr<ros2_ouster::DataProcessorInterface>> _data_processors;
+  rclcpp::TimerBase::SharedPtr _process_timer;
 
   std::shared_ptr<sensor::FullRotationAccumulator> _full_rotation_accumulator;
 
@@ -159,16 +153,8 @@ private:
 
   std::uint32_t _proc_mask;
 
-  // Ringbuffers for raw received lidar and imu packets
-  std::unique_ptr<RingBuffer> _lidar_packet_buf;
-  std::unique_ptr<RingBuffer> _imu_packet_buf;
-
-  // Threads and synchronization primitives for receiving and processing data
-  std::thread _recv_thread;
-  std::thread _process_thread;
-  std::condition_variable _process_cond;
-  std::mutex _ringbuffer_mutex;
-  bool _processing_active;
+  uint8_t * _lidar_packet_data;
+  uint8_t * _imu_packet_data;
 };
 
 }  // namespace ros2_ouster

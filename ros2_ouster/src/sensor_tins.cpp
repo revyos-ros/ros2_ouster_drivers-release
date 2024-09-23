@@ -128,23 +128,21 @@ ouster::sensor::client_state SensorTins::get()
   return _inferred_state;
 }
 
-bool SensorTins::readLidarPacket(const ouster::sensor::client_state & state, uint8_t * buf)
+uint8_t * SensorTins::readLidarPacket(const ouster::sensor::client_state & state)
 {
   if (state == ouster::sensor::client_state::LIDAR_DATA) {
-    std::memcpy(buf, _lidar_packet.data(), this->getPacketFormat().lidar_packet_size);
-    return true;
+    return _lidar_packet.data();
   } else {
-    return false;
+    return nullptr;
   }
 }
 
-bool SensorTins::readImuPacket(const ouster::sensor::client_state & state, uint8_t * buf)
+uint8_t * SensorTins::readImuPacket(const ouster::sensor::client_state & state)
 {
   if (state == ouster::sensor::client_state::IMU_DATA) {
-    std::memcpy(buf, _imu_packet.data(), this->getPacketFormat().imu_packet_size);
-    return true;
+    return _imu_packet.data();
   } else {
-    return false;
+    return nullptr;
   }
 }
 

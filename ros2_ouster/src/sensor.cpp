@@ -28,6 +28,8 @@ Sensor::Sensor()
 Sensor::~Sensor()
 {
   _ouster_client.reset();
+  _lidar_packet.clear();
+  _imu_packet.clear();
 }
 
 void Sensor::reset(
@@ -88,6 +90,8 @@ void Sensor::configure(
   }
 
   setMetadata(config.lidar_port, config.imu_port, config.timestamp_mode);
+  _lidar_packet.resize(this->getPacketFormat().lidar_packet_size + 1);
+  _imu_packet.resize(this->getPacketFormat().imu_packet_size + 1);
 }
 
 ouster::sensor::client_state Sensor::get()
@@ -108,28 +112,28 @@ ouster::sensor::client_state Sensor::get()
   return state;
 }
 
-bool Sensor::readLidarPacket(const ouster::sensor::client_state & state, uint8_t * buf)
+uint8_t * Sensor::readLidarPacket(const ouster::sensor::client_state & state)
 {
   if (state & ouster::sensor::client_state::LIDAR_DATA &&
     ouster::sensor::read_lidar_packet(
-      *_ouster_client, buf,
+      *_ouster_client, _lidar_packet.data(),
       this->getPacketFormat()))
   {
-    return true;
+    return _lidar_packet.data();
   }
-  return false;
+  return nullptr;
 }
 
-bool Sensor::readImuPacket(const ouster::sensor::client_state & state, uint8_t * buf)
+uint8_t * Sensor::readImuPacket(const ouster::sensor::client_state & state)
 {
   if (state & ouster::sensor::client_state::IMU_DATA &&
     ouster::sensor::read_imu_packet(
-      *_ouster_client, buf,
+      *_ouster_client, _imu_packet.data(),
       this->getPacketFormat()))
   {
-    return true;
+    return _imu_packet.data();
   }
-  return false;
+  return nullptr;
 }
 
 void Sensor::setMetadata(
